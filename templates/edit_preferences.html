@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Preferences</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylePreference.css') }}">		 
+    <script>
+        function validateForm(event) {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+            if (!isChecked) {
+                alert("Please select at least one preference.");
+                event.preventDefault();
+            }
+        }
+    </script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+<body>
+    <div class="header-container">
+        <header>
+            <img src="{{ url_for('static', filename='user.png') }}" alt="Logo" class="logo">
+            <span class="username">{{ session.username }}</span>
+            <a class="logout-link" href="{{ url_for('logout') }}">Logout</a>
+        </header>
+    </div>
+
+    <h1>Edit Your Preferences</h1>
+    <form method="POST" action="{{ url_for('edit_preferences') }}" onsubmit="validateForm(event)">
+        <div class="checkbox-grid">
+            {% for keywords in available_keywords %}
+            <label>
+                <input type="checkbox" name="preferences" value="{{ keywords }}"
+                    {% if keywords in existing_preferences %} checked {% endif %}>
+                <span>{{ keywords }}</span>
+            </label>
+            {% endfor %}
+        </div>
+        <button type="submit">Update Preferences</button>
+    </form>
+    <br>
+    <a href="javascript:void(0);" onclick="goBack()">Back to Summaries</a>
+</body>
+</html>

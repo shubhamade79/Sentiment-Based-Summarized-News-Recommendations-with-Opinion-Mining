@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summaries</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesummaries.css') }}">		 
+
+</head>
+<body>
+    <div class="header-container">
+        <h1>Summaries for Selected Preferences</h1>
+        <header>
+            <!-- <img src="path/to/logo.png" alt="Logo" class="logo"> Replace with actual logo path -->
+            <span class="username">{{ session.username }}</span>
+            <span><a href="{{ url_for('logout') }}">Logout</a></span>
+        </header>
+    </div>
+    <form id="refresh-form" action="{{ url_for('refresh') }}" method="post">
+        <button type="submit">Refresh Articles</button>
+    </form>
+    {% if summaries %}
+        <ul>
+            {% for title, summary, link, image, category,question in summaries %}
+            <li>
+                <h2>{{ title }}</h2>
+                <p>{{ summary }}</p>
+                {% if image != "No image available" %}
+                    <img src="{{ image }}" alt="{{ title }}" style="max-width: 100%; height: auto; border-radius: 5px; margin-top: 10px;"> 
+                {% endif %}
+                <p><a href="{{ link }}" target="_blank">Read full article</a></p>
+                <p>Category: {{ category }}</p>  
+                <p><strong>Generated Question:</strong> {{question}}</p> 
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No summaries available.</p>
+    {% endif %}
+    
+    <a href="{{ url_for('edit_preferences') }}">Edit Preferences</a>
+    <script>
+        // Show an alert 5 minutes before the refresh
+        setTimeout(function() {
+            alert("The articles will refresh in 5 minutes.");
+        }, 3300000); // 3,300,000 ms = 55 minutes
+
+        // Automatically click the refresh button every 5 minutes (300,000 ms)
+        setTimeout(function() {
+            document.getElementById('refresh-form').submit();  // Submit the form to refresh articles
+        }, 3600000); // 300,000 ms = 5 minutes // 3,600,000 ms = 1 hour // 360,000 ms = 6 minutes
+    </script>
+</body>
+</html>

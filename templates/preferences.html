@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylePreference.css') }}">		 
+    <script>
+        function validateForm(event) {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+            if (!isChecked) {
+                alert("Please select at least one preference.");
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <div class="header-container">
+        <header>
+            <img src="{{ url_for('static', filename='user.png') }}" alt="Logo" class="logo">
+            <span class="username">{{ session.username }}</span>
+            <a class="logout-link" href="{{ url_for('logout') }}">Logout</a>
+        </header>
+    </div>
+
+    <h1>Select Your Preferences</h1>
+    <form method="POST" action="{{ url_for('preferences') }}" onsubmit="validateForm(event)">
+        <!-- <div class="checkbox-grid">
+            <label>
+                <input type="checkbox" name="preferences" value="Sports" {% if 'Sports' in existing_preferences %} checked {% endif %}>
+                <span>Sports</span>
+            </label>
+            <label>
+                <input type="checkbox" name="preferences" value="Lifestyle" {% if 'Lifestyle' in existing_preferences %} checked {% endif %}>
+                <span>Lifestyle</span>
+            </label>
+            <label>
+                <input type="checkbox" name="preferences" value="Entertainment" {% if 'Entertainment' in existing_preferences %} checked {% endif %}>
+                <span>Entertainment</span>
+            </label>
+            <label>
+                <input type="checkbox" name="preferences" value="Technology" {% if 'Technology' in existing_preferences %} checked {% endif %}>
+                <span>Technology</span>
+            </label>
+            <label>
+                <input type="checkbox" name="preferences" value="India-News" {% if 'India-News' in existing_preferences %} checked {% endif %}>
+                <span>India News</span>
+            </label>
+            <label>
+                <input type="checkbox" name="preferences" value="Trending" {% if 'Trending' in existing_preferences %} checked {% endif %}>
+                <span>Trending</span>
+            </label>
+            <label>
+                <input type="checkbox" name="preferences" value="Cities" {% if 'Cities' in existing_preferences %} checked {% endif %}>
+                <span>Cities</span>
+            </label>
+            <label>
+                <input type="checkbox" name="preferences" value="Education" {% if 'Education' in existing_preferences %} checked {% endif %}>
+                <span>Education</span>
+            </label>
+            <label>
+                <input type="checkbox" name="preferences" value="World-News" {% if 'World-News' in existing_preferences %} checked {% endif %}>
+                <span>World News</span>
+            </label>
+        </div> -->
+        <div class="checkbox-grid">
+            {% for keywords in available_keywords %}
+            <label>
+                <input type="checkbox" name="preferences" value="{{ keywords }}"
+                    {% if keywords in existing_preferences %} checked {% endif %}>
+                <span>{{ keywords }}</span>
+            </label>
+            {% endfor %}
+        </div>
+       
+        <button type="submit">Save Preferences</button>
+    </form>
+</body>
+</html>
