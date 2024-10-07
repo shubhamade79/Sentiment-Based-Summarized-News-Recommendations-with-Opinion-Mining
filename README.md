@@ -69,7 +69,7 @@ pip install flask requests beautifulsoup4 flask-mysqldb mysqlclient transformers
 ```bash
 flask run
 ```
-If Doesn't Create the Virtual Environment Then Ruu Program By
+If Doesn't Create the Virtual Environment Then Run Program By
 ```bash
 python app.py
 ```
