@@ -3,7 +3,7 @@
 
 ## Installation and Setup
 
-To get started with the Text Summarization with Transformers project, follow these steps to set up your environment and install the necessary dependencies.
+To get started , follow these steps to set up your environment and install the necessary dependencies.
 
 ### Prerequisites
 - Python (version 3.7 or later)
