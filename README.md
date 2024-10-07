@@ -37,5 +37,5 @@ flask run
 
 ### Step 5: Go To The Running and Click the link
 ```bash
-[flask run](http://127.0.0.1:5000)
+(http://127.0.0.1:5000)
 ```
