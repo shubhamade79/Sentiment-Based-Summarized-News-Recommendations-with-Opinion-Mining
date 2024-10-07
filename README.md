@@ -37,8 +37,11 @@ pip install flask requests beautifulsoup4 flask-mysqldb mysqlclient transformers
 ```bash
 flask run
 ```
-
-### Step 5: Go To The Running and Click the link
+If Doesn't Create the Virtual Environment Then Ruu Program By
+```bash
+python app.py
+```
+### Step 5: Click the link On Terminal Then Open The Website
 ```bash
 (http://127.0.0.1:5000)
 ```
