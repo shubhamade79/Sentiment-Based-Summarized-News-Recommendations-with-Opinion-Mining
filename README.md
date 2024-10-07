@@ -29,7 +29,10 @@ Install all the required libraries using pip:
 ```bash
 pip install -r requirements.txt
 ```
-
+If Doesn't Execute or Not Install Properly Then Install Manually
+```bash
+pip install flask requests beautifulsoup4 flask-mysqldb mysqlclient transformers torch
+```
 ### Step 4: Run App.py File
 ```bash
 flask run
