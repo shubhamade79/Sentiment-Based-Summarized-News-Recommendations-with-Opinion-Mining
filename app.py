@@ -356,6 +356,3 @@ def generate_yes_no_question(context, variation=None):
 
     return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
