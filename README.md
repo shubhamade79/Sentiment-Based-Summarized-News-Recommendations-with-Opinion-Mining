@@ -9,6 +9,38 @@ To get started with the Text Summarization with Transformers project, follow the
 - Python (version 3.7 or later)
 - pip (Python package manager)
 - Access to a command-line interface
+- Setup Database
+  
+1. Set up the MySQ database:
+
+    Open a MySQL Workbench client and run the following commands to create the database and table:
+
+    ```sql
+    CREATE DATABASE IF NOT EXISTS `login` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+    USE `login`;
+
+    CREATE TABLE IF NOT EXISTS `accounts` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `username` varchar(50) NOT NULL,
+        `password` varchar(255) NOT NULL,
+        `email` varchar(100) NOT NULL,
+        PRIMARY KEY (`id`)
+    );
+
+    ALTER TABLE `accounts` ADD `preferences` TEXT;
+    ```
+
+2. Configure the database connection in `app.py`:
+
+   Open `app.py` and ensure the MySQL configurations are set correctly:
+
+    ```python
+    app.config['MYSQL_HOST'] = 'localhost'
+    app.config['MYSQL_USER'] = 'root'
+    app.config['MYSQL_PASSWORD'] = 'your_password'
+    app.config['MYSQL_DB'] = 'login'
+    ```
+
 
 ### Step 1: Clone the Repository
 First, clone the repository to your local machine:
